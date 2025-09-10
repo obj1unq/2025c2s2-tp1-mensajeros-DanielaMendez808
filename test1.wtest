@@ -1,0 +1,26 @@
+import example.*
+
+describe "Tests de Mensajeros de Pelicula"{
+
+    test "El paquete de George que no está pago no puede ser llevado por Neo a la matrix."{
+    paquete.pagado(false)
+    assert.notThat(paquete.puedeEnviarse(laMatrix,neo))
+}
+    test "El paquete de George que sí está pago puede ser llevado por Jean a la matrix"{
+    paquete.pagado(true)
+    assert.that(paquete.puedeEnviarse(laMatrix,jeanGray))
+}
+    test "El paquete de George que sí está pago no puede ser llevado por Sara (que pesa 70kg) a Brooklyn si es que utiliza un camión con un acoplado"{
+        paquete.pagado(true)
+        saraConnor.peso(70)
+        saraConnor.vehiculo(camion)
+        camion.acoplados(1)
+        assert.notThat(paquete.puedeEnviarse(puenteDeBrooklyn,saraConnor))
+}
+    test "El paquete de George que sí está pago puede ser llevado por Sara (que pesa 70kg) a Brooklyn si es que utiliza una moto"{
+        paquete.pagado(true)
+        saraConnor.peso(70)
+        saraConnor.vehiculo(moto)
+        assert.that(paquete.puedeEnviarse(puenteDeBrooklyn,saraConnor))
+}
+}
